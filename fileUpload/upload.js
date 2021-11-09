@@ -1,3 +1,4 @@
+//const axios = require('axios').default;
 const { default: axios } = require('axios');
 
 (function () {
@@ -9,4 +10,12 @@ const { default: axios } = require('axios');
       'Content-Type': 'multipart/form-data',
     },
   });
+
+  axios.post('/upload_single_base64'),
+    { file: '', filename: '' },
+    {
+      headers: {
+        'Content-Type': 'x-www-form-urlencoded',
+      },
+    };
 });
