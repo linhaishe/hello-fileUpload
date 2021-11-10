@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACE,QADM,CACN,WAAW,CAAC;EACV,OAAO,EAAE,IAAI;CACd",
+    "sources": [
+        "upload.scss"
+    ],
+    "names": [],
+    "file": "upload.css"
+}
