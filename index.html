@@ -9,10 +9,10 @@
   </head>
   <body>
     <div class="container">
-      <div class="item">
+      <div class="item1">
         <h3>单一文件上传「FORM-DATA」</h3>
         <section class="upload_box" id="upload1">
-          <input type="file" class="upload_inp" accept=".png" />
+          <input type="file" class="upload_inp" accept=".png,.jpg" />
           <div class="upload_button_box">
             <button class="upload_button select">选择文件</button>
             <button class="upload_button upload">上传到服务器</button>
@@ -31,4 +31,9 @@
     </div>
   </body>
 </html>
-<script src="../fileUpload/upload.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="node_modules/axios/dist/axios.min.js"></script>
+<script src="node_modules/qs/dist/qs.js"></script>
+<script src="node_modules/spark-md5/spark-md5.min.js"></script>
+<script type="module" src="../fileUpload/upload.js"></script>
+<script src="../fileUpload/instance.js"></script>

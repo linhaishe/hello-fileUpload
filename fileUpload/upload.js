@@ -1,3 +1,4 @@
+//#region
 /** 
 //const axios = require('axios').default;
 const { default: axios } = require('axios');
@@ -59,7 +60,9 @@ const { default: axios } = require('axios');
     };
 });
 */
-
+//#endregion
+// import http from './instance';
+// const FormData = require('form-data');
 (function () {
   let upload = document.querySelector('#upload1'),
     upload_inp = upload.querySelector('.upload_inp'),
@@ -67,6 +70,36 @@ const { default: axios } = require('axios');
     upload_button_upload = upload.querySelector('.upload_button.upload'),
     upload_tip = upload.querySelector('.upload_tip'),
     upload_list = upload.querySelector('.upload_list');
+
+  let _file = null;
+
+  //上传文件事件处理
+  upload_button_upload.addEventListener('click', function () {
+    console.log('文件_file', _file);
+    if (!_file) {
+      alert('请上传文件');
+    }
+    //把文件传递给服务器Formbata / BASE64
+
+    let formData = new FormData();
+    formData.append('file', _file);
+    formData.append('filename', _file.name);
+    instance
+      .post('/upload_single', formData)
+      .then((res) => {
+        console.log(res.data.code);
+        if (res.data.code === 0) {
+          alert(
+            `文件已经上传成功~,您可以基于${res.data.servicePath}访问这个资源~~^ `
+          );
+          return;
+        }
+        return Promise.reject(res.data.codeText);
+      })
+      .catch((reason) => {
+        alert('文件上传失败，请您稍后再试~~');
+      });
+  });
 
   //移除按钮的点击处理
   upload_list.addEventListener('click', function (ev) {
@@ -87,9 +120,12 @@ const { default: axios } = require('axios');
     //+ size:文件大小B
     //+ type: 文件的MIME类型
     let file = upload_inp.files[0];
+    console.log('check', upload_inp.files);
+    _file = file;
 
     if (!file) return;
     //限制文件上传的格式「方案-」
+
     /** 
     if (!/(PNG |JPG |JPEG)/i.test(file.type)) {
       alert('.上传的文件只能是PNG/JPG/JPEG格式的');
