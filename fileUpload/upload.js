@@ -73,11 +73,8 @@ const { default: axios } = require('axios');
     // console.log('dianjidianji', ev);
 
     let target = ev.target.tagName;
-    console.log('dianjidianji', target);
-
     if (target === 'EM') {
       //点击的是移除按钮
-      console.log('dianjidianjiEMMMMMM');
       upload_tip.style.display = 'block';
       upload_list.style.display = 'none';
       upload_list.innerHTML = ``;
