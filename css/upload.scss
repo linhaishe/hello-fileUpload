@@ -9,12 +9,15 @@ body {
   width: 100%;
   margin: 0 auto;
 }
-#upload1 {
+#upload1,
+#upload2 {
   .upload_inp {
     display: none;
   }
 }
 
-.item1 {
+.item1,
+.item2 {
+  margin-top: 30px;
   border: 1px solid black;
 }

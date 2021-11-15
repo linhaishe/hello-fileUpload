@@ -28,10 +28,30 @@
           </ul>
         </section>
       </div>
+
+      <div class="item2">
+        <h3>多文件上传「FORM-DATA」</h3>
+        <section class="upload_box" id="upload2">
+          <input type="file" class="upload_inp" multiple accept=".png,.jpg" />
+          <div class="upload_button_box">
+            <button class="upload_button select">选择文件</button>
+            <button class="upload_button upload">上传到服务器</button>
+          </div>
+          <div class="upload_tip">
+            只能上传PNG/JPG/JPEG格式图片，且大小不能超过2MB
+          </div>
+          <ul class="upload_list">
+            <!-- <li>
+              <span>文件: ..</span>
+              <span><em>移除</em></span>
+            </li> -->
+          </ul>
+        </section>
+      </div>
     </div>
   </body>
 </html>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 <script src="node_modules/axios/dist/axios.min.js"></script>
 <script src="node_modules/qs/dist/qs.js"></script>
 <script src="node_modules/spark-md5/spark-md5.min.js"></script>
