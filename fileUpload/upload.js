@@ -75,6 +75,7 @@ const { default: axios } = require('axios');
     upload_list = upload.querySelector('.upload_list');
 
   let _file = null;
+  let _isPng = '89504E47';
 
   //上传文件事件处理
   upload_button_upload.addEventListener('click', function () {
@@ -120,14 +121,36 @@ const { default: axios } = require('axios');
     }
   });
   //监听用户选择文件的操作
-  upload_inp.addEventListener('change', function () {
+  upload_inp.addEventListener('change', async function (ev) {
     //获取用户选中的文件对象
     //+ name:文件名
     //+ size:文件大小B
     //+ type: 文件的MIME类型
+
     let file = upload_inp.files[0];
     console.log('check', upload_inp.files);
     _file = file;
+
+    function getFileMime(files) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsArrayBuffer(files);
+        reader.onload = (ev) => {
+          let array = new Uint8Array(ev.target.result);
+          array = array.slice(0, 4);
+          let arr = [...array];
+          let isPng = arr
+            .map((item) => item.toString(16).toUpperCase().padStart(2, '0'))
+            .join('');
+          resolve(isPng);
+          // _isPng = isPng;
+          console.log('uint8Array', typeof isPng);
+          console.log('_isPng', typeof _isPng);
+          /* prettier-ignore */
+        };
+        reader.onerror = reject;
+      });
+    }
 
     if (!file) return;
     //限制文件上传的格式「方案-」
@@ -138,6 +161,13 @@ const { default: axios } = require('axios');
       return;
     }
     */
+
+    const res = await getFileMime(file);
+
+    if (res !== _isPng) {
+      alert('请上传PNG文件');
+      return;
+    }
 
     //限制文件上传的大小
     if (file.size > 2 * 1024 * 1024) {
@@ -156,7 +186,7 @@ const { default: axios } = require('axios');
   upload_button_select.addEventListener('click', function () {
     upload_inp.click();
   });
-});
+})();
 
 //多文件上传
 (function () {
@@ -260,4 +290,4 @@ const { default: axios } = require('axios');
   upload_button_select.addEventListener('click', function () {
     upload_inp.click();
   });
-})();
+});
