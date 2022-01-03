@@ -128,52 +128,52 @@ const { default: axios } = require('axios');
     //+ type: 文件的MIME类型
 
     let file = upload_inp.files[0];
-    console.log('check', upload_inp.files);
+    // console.log('check', upload_inp.files);
     _file = file;
 
-    function getFileMime(files) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsArrayBuffer(files);
-        reader.onload = (ev) => {
-          let array = new Uint8Array(ev.target.result);
-          array = array.slice(0, 4);
-          let arr = [...array];
-          let isPng = arr
-            .map((item) => item.toString(16).toUpperCase().padStart(2, '0'))
-            .join('');
-          resolve(isPng);
-          // _isPng = isPng;
-          console.log('uint8Array', typeof isPng);
-          console.log('_isPng', typeof _isPng);
-          /* prettier-ignore */
-        };
-        reader.onerror = reject;
-      });
-    }
+    // function getFileMime(files) {
+    //   return new Promise((resolve, reject) => {
+    //     const reader = new FileReader();
+    //     reader.readAsArrayBuffer(files);
+    //     reader.onload = (ev) => {
+    //       let array = new Uint8Array(ev.target.result);
+    //       array = array.slice(0, 4);
+    //       let arr = [...array];
+    //       let isPng = arr
+    //         .map((item) => item.toString(16).toUpperCase().padStart(2, '0'))
+    //         .join('');
+    //       resolve(isPng);
+    //       // _isPng = isPng;
+    //       console.log('uint8Array', typeof isPng);
+    //       console.log('_isPng', typeof _isPng);
+    //       /* prettier-ignore */
+    //     };
+    //     reader.onerror = reject;
+    //   });
+    // }
 
-    if (!file) return;
-    //限制文件上传的格式「方案-」
+    // if (!file) return;
+    // //限制文件上传的格式「方案-」
 
-    /** 
-    if (!/(PNG |JPG |JPEG)/i.test(file.type)) {
-      alert('.上传的文件只能是PNG/JPG/JPEG格式的');
-      return;
-    }
-    */
+    // /**
+    // if (!/(PNG |JPG |JPEG)/i.test(file.type)) {
+    //   alert('.上传的文件只能是PNG/JPG/JPEG格式的');
+    //   return;
+    // }
+    // */
 
-    const res = await getFileMime(file);
+    // const res = await getFileMime(file);
 
-    if (res !== _isPng) {
-      alert('请上传PNG文件');
-      return;
-    }
+    // if (res !== _isPng) {
+    //   alert('请上传PNG文件');
+    //   return;
+    // }
 
-    //限制文件上传的大小
-    if (file.size > 2 * 1024 * 1024) {
-      alert('.上传的文件不能超过2MB~~');
-      return;
-    }
+    // //限制文件上传的大小
+    // if (file.size > 2 * 1024 * 1024) {
+    //   alert('.上传的文件不能超过2MB~~');
+    //   return;
+    // }
 
     upload_tip.style.display = 'none';
     upload_list.style.display = 'block';
